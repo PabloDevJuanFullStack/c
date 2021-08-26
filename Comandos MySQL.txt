@@ -1,0 +1,229 @@
+Alex java Postgresql
+
+create SEQUENCE usersequence
+increment 1
+minvalue 1
+maxvalue 922337203654775807
+start 7;
+
+
+
+alter table userultimo ALTER column id set default nextval('usersequence'::regclass);
+
+
+
+select * from telefoneuser as fone
+inner join userpipa as userp
+on fone.usuariopessoa = userp.id
+where userp.id = 4
+
+
+
+ //*Cria um banco de dados, aqui coloquei o nome do banco de cadastro*//
+    
+    create database cadastro;
+
+-----------------------------------------------------------------------------------------
+
+ //*cria uma tabela, aqui coloquei nome da tabela de pessoas*//
+    
+    create table pessoas (
+    nome varchar(30),
+    idade tinyint(3),
+    sexo char(1),
+    peso float,
+    altura float,
+    nacionalidade varchar(20)
+   );
+
+-----------------------------------------------------------------------------------------
+
+ //*para apagar o banco de dados, vou usar como exemplo o banco de dados cadastro*//
+   
+    drop database cadastro;
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+ //*Melhorando o banco de dados, vou por o nome de cadastro do novo banco de dados*//
+  
+   CREATE TABLE cadastro
+   default character set utf8
+   default collate utf8_general_ci;
+
+-----------------------------------------------------------------------------------------
+
+ //*Criando uma tabela mais melhorada*//
+    
+   CREATE TABLE pessoas (
+   id int NOT NULL AUTO_INCREMENT,
+   nome varchar(30) NOT NULL,
+   nascimento date,
+   sexo enum('M', 'F'),
+   peso decimal(5, 2),
+   altura decimal(3, 2),
+   nascionalidade varchar(20) DEFAULT 'BRASIL',
+   PRIMARY KEY (id)
+   )DEFAULT CHARSET = utf8;
+
+-----------------------------------------------------------------------------------------
+
+ //*Inserir dados no banco de banco pessoas*//
+    
+    INSERT INTO pessoas (id, nome, nascimento, sexo, peso, altura, nacionalidade) 
+     values (DEFAULT, 'Ilza Silva', '1997-11-23', 'F', '62.5', '1.66', 'Brasil');
+
+      ou 
+
+     INSERT INTO pessoas values 
+     (DEFAULT, 'Ilza Silva', '1997-11-23', 'F', '62.5', '1.66', 'Brasil');
+
+      ou
+
+     INSERT INTO pessoas (id, nome, nascimento, sexo, peso, altura, nacionalidade)
+     values (DEFAULT, 'Ilza Silva', '1997-11-23', 'F', '62.5', '1.66', 'EU'),
+     (DEFAULT, 'Nylla', '2001-11-13', 'F', '68.5', '1.68', 'Brasil'),
+     (DEFAULT, 'Nicolal', '2021-11-20', 'M', '26.5', 'o.58', 'Portugal');
+ 
+-----------------------------------------------------------------------------------------
+
+ //*seleciona e mostra a tabela*//
+
+  select * from pessoas
+
+-----------------------------------------------------------------------------------------
+
+ //* descreve oq ha na tabela, o exemplo é a tabela pessoas*//
+
+   desc pessoas;
+
+----------------------------------------------------------------------------------------
+
+                  * ALTER TABLE
+
+
+//////////** O 'Column' é opcional **/////////////////
+
+*----------------------------------------------------------------------------------------
+ //*adiciona mais uma coluna no final*//
+
+   alter table pessoas
+   add column profissao varchar(10);
+
+*-----------------------------------------------------------------------------------------
+ 
+ //*exclui da tabela pessoas a coluna profissao*//
+
+   alter table pessoas
+   drop column profissao;
+
+*----------------------------------------------------------------------------------------
+ //*adiciona mais uma coluna na tabela pessoas (after) após o nome*//
+
+   alter table pessoas
+   add column profissao varchar(10) after nome;
+
+
+ //*adiciona mais uma coluna na tabela pessoas (first) como a primeira coluna*//
+
+   alter table pessoas
+   add column profissao varchar(10) int first;
+
+*----------------------------------------------------------------------------------------
+
+ //*para modificar a tabela (modify), no exemplo a tabela pessoas na coluna profissao(para varchar(20) not null default)*//
+
+   alter table pessoas
+   modify column profissao varchar(20) not null default; 
+
+*----------------------------------------------------------------------------------------
+
+ //*para modificar o nome da  tabela (change), no exemplo a tabela pessoas na coluna profissao(para prof)*//
+
+   alter table pessoas
+   change column profissao prof varchar(20);
+
+*----------------------------------------------------------------------------------------
+
+ //*modifica o nome da coluna*//
+
+   alter table pessoas
+   rename to gafanhotos;
+
+*----------------------------------------------------------------------------------------
+
+ //*Criando uma nova tabela, esse parametro só cria se nao existir(CREATE TABLE IF NOT EXISTS) //  só apaga se existir a tabela(IF EXISTS)*//
+    
+   CREATE TABLE IF NOT EXISTS cursos (
+   nome varchar(30) NOT NULL UNIQUE,
+   descricao text UNSIGNED,
+   carga int,
+   totaulas int,
+   ano years DEFAULT '2021'
+   )DEFAULT CHARSET = utf8;
+
+-----------------------------------------------------------------------------------------
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
